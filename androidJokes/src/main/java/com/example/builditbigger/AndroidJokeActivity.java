@@ -1,4 +1,4 @@
-package com.example.androidjokes;
+package com.example.builditbigger;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

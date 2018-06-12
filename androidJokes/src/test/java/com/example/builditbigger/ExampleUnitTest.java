@@ -1,4 +1,4 @@
-package com.example.androidjokes;
+package com.example.builditbigger;
 
 import org.junit.Test;
 
