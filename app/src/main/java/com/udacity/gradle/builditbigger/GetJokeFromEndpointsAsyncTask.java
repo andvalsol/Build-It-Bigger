@@ -3,7 +3,6 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Pair;
 
 import com.example.builditbigger.AndroidJokeActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -13,14 +12,21 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 
-public class GetJokeFromEndpointsAsyncTask extends AsyncTask<Pair<Context,String>, Void, String> {
+public class GetJokeFromEndpointsAsyncTask extends AsyncTask<String, Void, String> {
     
     private static MyApi mMyApiService = null;
-    private Context mContext;
+    
+    //Use a weak reference to achieve a cleaner memory management
+    private WeakReference<Context> mContext;
+    
+    GetJokeFromEndpointsAsyncTask(Context context) {
+        mContext = new WeakReference<>(context);
+    }
     
     @Override
-    protected String doInBackground(Pair<Context, String>... pairs) {
+    protected String doInBackground(String... strings) {
         //Check if mMyApiService instance is null
         if (mMyApiService == null) {
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
@@ -35,12 +41,9 @@ public class GetJokeFromEndpointsAsyncTask extends AsyncTask<Pair<Context,String
         
             mMyApiService = builder.build();
         }
-    
-        //Get the context
-        mContext = pairs[0].first;
         
         //Get the joke
-        String joke = pairs[0].second;
+        String joke = strings[0];
     
         try {
             return mMyApiService.getJoke(joke).execute().getData();
@@ -52,9 +55,9 @@ public class GetJokeFromEndpointsAsyncTask extends AsyncTask<Pair<Context,String
     @Override
     protected void onPostExecute(String joke) {
         //Pass the joke to the androidJokes library and launch the AndroidJokeActivity class
-        Intent intent = new Intent(mContext, AndroidJokeActivity.class);
+        Intent intent = new Intent(mContext.get(), AndroidJokeActivity.class);
         intent.putExtra("joke", joke);
-        mContext.startActivity(intent);
+        mContext.get().startActivity(intent);
     }
     
 }
