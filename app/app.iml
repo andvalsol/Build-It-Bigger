@@ -202,48 +202,5 @@
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:runtime-1.1.0" level="project" />
     <orderEntry type="module" module-name="androidJokes" />
     <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement-15.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-base-15.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-lite-15.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-gass-15.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-identifier-15.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-15.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:customtabs-26.1.0" level="project" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
-    <orderEntry type="module" module-name="androidJokes" />
-    <orderEntry type="module" module-name="javaJokes" />
   </component>
 </module>

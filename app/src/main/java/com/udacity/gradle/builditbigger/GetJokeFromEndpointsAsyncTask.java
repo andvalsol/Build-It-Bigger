@@ -3,6 +3,8 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.builditbigger.AndroidJokeActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -19,10 +21,10 @@ public class GetJokeFromEndpointsAsyncTask extends AsyncTask<String, Void, Strin
     private static MyApi mMyApiService = null;
     
     //Use a weak reference to achieve a cleaner memory management
-    private WeakReference<Context> mContext;
+    private WeakReference<View> mView;
     
-    GetJokeFromEndpointsAsyncTask(Context context) {
-        mContext = new WeakReference<>(context);
+    public GetJokeFromEndpointsAsyncTask(View view) {
+        mView = new WeakReference<>(view);
     }
     
     @Override
@@ -54,10 +56,13 @@ public class GetJokeFromEndpointsAsyncTask extends AsyncTask<String, Void, Strin
     
     @Override
     protected void onPostExecute(String joke) {
+        //The view we use is the progress bar, so set the view as invisible
+        ((ProgressBar) mView.get()).setVisibility(View.INVISIBLE);
+        
         //Pass the joke to the androidJokes library and launch the AndroidJokeActivity class
-        Intent intent = new Intent(mContext.get(), AndroidJokeActivity.class);
+        Intent intent = new Intent(mView.get().getContext(), AndroidJokeActivity.class);
         intent.putExtra("joke", joke);
-        mContext.get().startActivity(intent);
+        mView.get().getContext().startActivity(intent);
     }
     
 }

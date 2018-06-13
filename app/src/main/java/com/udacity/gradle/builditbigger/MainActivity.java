@@ -39,11 +39,4 @@ public class MainActivity extends AppCompatActivity {
         
         return super.onOptionsItemSelected(item);
     }
-    
-    public void tellJoke(View view) {
-        //Get a joke from the Joker class
-        String joke = Joker.getJoke();
-        
-        new GetJokeFromEndpointsAsyncTask(this).execute(joke);
-    }
 }
