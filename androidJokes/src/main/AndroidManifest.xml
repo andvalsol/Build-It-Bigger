@@ -3,7 +3,7 @@
     package="com.example.builditbigger">
 
     <application>
-        <activity android:name="com.example.com.udacity.gradle.builditbigger.AndroidJokeActivity"></activity>
+        <activity android:name="com.example.builditbigger.AndroidJokeActivity"/>
     </application>
 
 </manifest>
