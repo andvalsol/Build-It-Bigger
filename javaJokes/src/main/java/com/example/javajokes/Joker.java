@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Joker {
     
-    public String getJoke() {
+    public static String getJoke() {
         String[] jokes = {
                 "A burglar stole all the lamps in my house. I know I should be more upset, but I'm absolutely delighted",
                 "People always tell me I'm condescending.\n" +

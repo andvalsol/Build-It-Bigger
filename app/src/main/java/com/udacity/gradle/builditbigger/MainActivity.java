@@ -43,9 +43,8 @@ public class MainActivity extends AppCompatActivity {
     }
     
     public void tellJoke(View view) {
-        Joker joker = new Joker();
-        
-        String joke = joker.getJoke();
+        //Get a joke from the Joker class
+        String joke = Joker.getJoke();
         
         new GetJokeFromEndpointsAsyncTask().execute(new Pair<Context, String>(this, joke));
     }

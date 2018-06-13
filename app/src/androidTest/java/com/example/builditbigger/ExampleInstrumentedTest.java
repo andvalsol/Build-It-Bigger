@@ -1,8 +1,8 @@
 package com.example.builditbigger;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+
+import com.example.javajokes.Joker;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,11 +16,13 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
     
-        assertEquals("com.example.androidjokes.test", appContext.getPackageName());
+    @Test
+    public void getJokes() {
+        //Get a joke from the Joker class
+        String joke = Joker.getJoke();
+        
+        //Test that we're passing to the AsyncTask not empty strings
+        assertNotEquals("", joke);
     }
 }
