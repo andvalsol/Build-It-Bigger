@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger;
+package com.udacity.gradle.builditbigger.paid;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,17 +16,17 @@ import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 
-public class GetJokeFromEndpointsAsyncTask extends AsyncTask<String, Void, String> {
-    
+public class GetJokeFromEndpointAsyncTask extends AsyncTask<String, Void, String> {
+
     private static MyApi mMyApiService = null;
-    
+
     //Use a weak reference to achieve a cleaner memory management
-    private WeakReference<View> mView;
-    
-    public GetJokeFromEndpointsAsyncTask(View view) {
-        mView = new WeakReference<>(view);
+    private WeakReference<ProgressBar> mProgressBarWeakReference;
+
+    GetJokeFromEndpointAsyncTask(ProgressBar progressBar) {
+        mProgressBarWeakReference = new WeakReference<>(progressBar);
     }
-    
+
     @Override
     protected String doInBackground(String... strings) {
         //Check if mMyApiService instance is null
@@ -40,29 +40,38 @@ public class GetJokeFromEndpointsAsyncTask extends AsyncTask<String, Void, Strin
                             request.setDisableGZipContent(true);
                         }
                     });
-        
+
             mMyApiService = builder.build();
         }
-        
+
         //Get the joke
         String joke = strings[0];
-    
+
         try {
             return mMyApiService.getJoke(joke).execute().getData();
         } catch (IOException e) {
             return e.getMessage();
         }
     }
-    
+
     @Override
     protected void onPostExecute(String joke) {
-        //The view we use is the progress bar, so set the view as invisible
-        ((ProgressBar) mView.get()).setVisibility(View.INVISIBLE);
-        
-        //Pass the joke to the androidJokes library and launch the AndroidJokeActivity class
-        Intent intent = new Intent(mView.get().getContext(), AndroidJokeActivity.class);
-        intent.putExtra("joke", joke);
-        mView.get().getContext().startActivity(intent);
+        //Remove the progress bar visibility
+        removeProgressBar(mProgressBarWeakReference.get());
+
+        //Open the AndroidJokeActivity
+        openAndroidJokeActivity(mProgressBarWeakReference.get().getContext(), joke);
     }
-    
+
+    private void removeProgressBar(ProgressBar progressBar) {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    private void openAndroidJokeActivity(Context context, String joke) {
+        //Pass the joke to the androidJokes library and launch the AndroidJokeActivity class
+        Intent intent = new Intent(context, AndroidJokeActivity.class);
+        intent.putExtra("joke", joke);
+        context.startActivity(intent);
+    }
+
 }

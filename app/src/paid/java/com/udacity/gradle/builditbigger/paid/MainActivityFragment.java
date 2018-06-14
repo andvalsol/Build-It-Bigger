@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.example.javajokes.Joker;
-import com.udacity.gradle.builditbigger.GetJokeFromEndpointsAsyncTask;
 import com.udacity.gradle.builditbigger.R;
 
 public class MainActivityFragment extends Fragment {
@@ -40,7 +39,7 @@ public class MainActivityFragment extends Fragment {
         //Get a joke from the Joker class
         String joke = Joker.getJoke();
         //Pass the mProgress bar, since we use that view as the context and also since we need to set its visibility to ge gone when the joke is loaded
-        new GetJokeFromEndpointsAsyncTask(mProgressBar).execute(joke);
+        new GetJokeFromEndpointAsyncTask(mProgressBar).execute(joke);
     }
     
     private void setProgressBarAsVisible() {
