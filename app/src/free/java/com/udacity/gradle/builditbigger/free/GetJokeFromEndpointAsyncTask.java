@@ -23,12 +23,7 @@ public class GetJokeFromEndpointAsyncTask extends AsyncTask<String, Void, String
     //Use a weak reference to achieve a cleaner memory management
     private WeakReference<ProgressBar> mProgressBarWeakReference;
     
-    private boolean mIsInterstitialAdLoaded;
-    
-    GetJokeFromEndpointAsyncTask(Boolean isInterstitialAdLoaded, ProgressBar progressBar) {
-        //Check if the interstitial ad is loaded
-        mIsInterstitialAdLoaded = isInterstitialAdLoaded;
-        
+    GetJokeFromEndpointAsyncTask(ProgressBar progressBar) {
         mProgressBarWeakReference = new WeakReference<>(progressBar);
     }
     
@@ -61,11 +56,17 @@ public class GetJokeFromEndpointAsyncTask extends AsyncTask<String, Void, String
     
     @Override
     protected void onPostExecute(String joke) {
-        if (!mIsInterstitialAdLoaded) {
-           removeProgressBar(mProgressBarWeakReference.get());
-            
+        removeProgressBar(mProgressBarWeakReference.get());
+
+        /*
+        * If the ad has loaded then do nothing, because we want to open the AndroidJokeActivity,
+        * if not then open the activity immediately
+        * */
+        if (!MainActivityFragment.mIsInterstitialAdLoaded) {
             //Open the AndroidJokeActivity
             openAndroidJokeActivity(mProgressBarWeakReference.get().getContext(), joke);
+        } else {
+            MainActivityFragment.mJoke = joke;
         }
     }
     

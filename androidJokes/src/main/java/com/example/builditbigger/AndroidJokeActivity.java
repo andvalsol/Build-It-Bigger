@@ -16,8 +16,7 @@ public class AndroidJokeActivity extends AppCompatActivity {
         
         //Check that the intent is not null, if is not null we're getting a string containing a joke from the javaJokes library
         if (getIntent() != null) {
-            Log.d("Intent", "The joke is: " + getIntent().getStringExtra("joke"));
-            textView.setText(getIntent().getStringExtra("joke"));
+            textView.setText(getIntent().getStringExtra(getString(R.string.joke)));
         }
     }
 }
