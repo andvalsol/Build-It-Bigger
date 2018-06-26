@@ -27,6 +27,10 @@ public class GetJokeFromEndpointAsyncTask extends AsyncTask<String, Void, String
         mProgressBarWeakReference = new WeakReference<>(progressBar);
     }
     
+    //This constructor is made for the InstrumentedTest
+    public GetJokeFromEndpointAsyncTask() {
+    }
+    
     @Override
     protected String doInBackground(String... strings) {
         //Check if mMyApiService instance is null
@@ -56,17 +60,19 @@ public class GetJokeFromEndpointAsyncTask extends AsyncTask<String, Void, String
     
     @Override
     protected void onPostExecute(String joke) {
-        removeProgressBar(mProgressBarWeakReference.get());
-
-        /*
-        * If the ad has loaded then do nothing, because we want to open the AndroidJokeActivity,
-        * if not then open the activity immediately
-        * */
-        if (!MainActivityFragment.mIsInterstitialAdLoaded) {
-            //Open the AndroidJokeActivity
-            openAndroidJokeActivity(mProgressBarWeakReference.get().getContext(), joke);
-        } else {
-            MainActivityFragment.mJoke = joke;
+        if (mProgressBarWeakReference != null) {
+            removeProgressBar(mProgressBarWeakReference.get());
+    
+            /*
+             * If the ad has loaded then do nothing, because we want to open the AndroidJokeActivity,
+             * if not then open the activity immediately
+             * */
+            if (!MainActivityFragment.mIsInterstitialAdLoaded) {
+                //Open the AndroidJokeActivity
+                openAndroidJokeActivity(mProgressBarWeakReference.get().getContext(), joke);
+            } else {
+                MainActivityFragment.mJoke = joke;
+            }
         }
     }
     

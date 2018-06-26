@@ -2,10 +2,12 @@ package com.example.builditbigger;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.example.javajokes.Joker;
+import com.udacity.gradle.builditbigger.free.GetJokeFromEndpointAsyncTask;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.concurrent.ExecutionException;
 
 import static org.junit.Assert.*;
 
@@ -18,10 +20,19 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
     
     @Test
-    public void getJokes() {
+    public void getJokesFromAsyncTask() {
         //Get a joke from the Joker class
-        String joke = Joker.getJoke();
+        GetJokeFromEndpointAsyncTask getJokeFromEndpointAsyncTask = new GetJokeFromEndpointAsyncTask();
         
+        String joke = "";
+        try {
+            joke = getJokeFromEndpointAsyncTask.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            joke = "";
+        }
+    
         //Test that we're passing to the AsyncTask not empty strings
         assertNotEquals("", joke);
     }
