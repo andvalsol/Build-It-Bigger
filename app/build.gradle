@@ -53,7 +53,6 @@ dependencies {
 
     freeImplementation 'com.google.firebase:firebase-ads:15.0.1' //Only show ads for free flavor
 
-    implementation project(':javaJokes')
     implementation project(':androidJokes')
 
     implementation 'com.android.support:support-v4:27.1.1'
