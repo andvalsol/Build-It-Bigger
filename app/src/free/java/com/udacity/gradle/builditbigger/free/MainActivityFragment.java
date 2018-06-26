@@ -87,15 +87,9 @@ public class MainActivityFragment extends Fragment {
      * */
     
     private void tellJoke() {
-        Log.d("ProgressBar", "the progress bar visibility is : " + mProgressBar.getVisibility());
-        
         //Get a joke from the Joker class
         String joke = Joker.getJoke();
         //Pass the mProgress bar, since we use that view as the context and also since we need to set its visibility to ge gone when the joke is loaded
-        try {
-            mJokeFromEndpoint = new GetJokeFromEndpointAsyncTask(mIsInterstitialAdLoaded, mProgressBar).execute(joke).get();
-        } catch (InterruptedException | ExecutionException e) {
-            mJokeFromEndpoint = null;
-        }
+        new GetJokeFromEndpointAsyncTask(mIsInterstitialAdLoaded, mProgressBar).execute(joke);
     }
 }

@@ -3,7 +3,6 @@ package com.udacity.gradle.builditbigger.free;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -62,22 +61,23 @@ public class GetJokeFromEndpointAsyncTask extends AsyncTask<String, Void, String
     
     @Override
     protected void onPostExecute(String joke) {
-        Log.d("ProgressBar", "2the progress bar visibility is : " + mProgressBarWeakReference.get().getVisibility());
-        
-        
         if (!mIsInterstitialAdLoaded) {
-            //Set the progress bar to be invisible if its visible
-            if (mProgressBarWeakReference.get().getVisibility() == View.VISIBLE) mProgressBarWeakReference.get().setVisibility(View.GONE);
-            
-            //Get the context from the progress bar
-            Context context = mProgressBarWeakReference.get().getContext();
+           removeProgressBar(mProgressBarWeakReference.get());
             
             //Open the AndroidJokeActivity
-            //Pass the joke to the androidJokes library and launch the AndroidJokeActivity class
-            Intent intent = new Intent(context, AndroidJokeActivity.class);
-            intent.putExtra("joke", joke);
-            context.startActivity(intent);
+            openAndroidJokeActivity(mProgressBarWeakReference.get().getContext(), joke);
         }
     }
     
+    private void removeProgressBar(ProgressBar progressBar) {
+        //Set the progress bar to be invisible if its visible
+        if (progressBar.getVisibility() == View.VISIBLE) mProgressBarWeakReference.get().setVisibility(View.GONE);
+    }
+    
+    private void openAndroidJokeActivity(Context context, String joke) {
+        //Pass the joke to the androidJokes library and launch the AndroidJokeActivity class
+        Intent intent = new Intent(context, AndroidJokeActivity.class);
+        intent.putExtra("joke", joke);
+        context.startActivity(intent);
+    }
 }

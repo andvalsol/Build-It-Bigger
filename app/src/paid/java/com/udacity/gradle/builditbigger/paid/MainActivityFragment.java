@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger.paid;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class MainActivityFragment extends Fragment {
     }
     
     private void setProgressBarAsVisible() {
+        Log.d("ProgressBar", "The visibility of the progress bar is: " + mProgressBar.getVisibility());
         mProgressBar.setVisibility(View.VISIBLE);
     }
 }
